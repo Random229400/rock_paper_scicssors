@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <h1 id="title">Rock Paper Scissors</h1>
+    <div class="buttons">
+        <img src="rock.png" width="125" id="rock">
+        <img src="paper.png" width="125" id="paper">
+        <img src="scissors.png" width="125" id="scissor">
+        <br>
+    </div>
+
+    <p id="user"></p>
+    <p id="computer"></p>
+    <br>
+    <p id="whoWins"></p>
+    <p id="gameOver"></p>
+    <p id="stats"></p>
+    <center>
+        <button id="playAgain"></button>
+        <button id="quit"></button>
+    </center>
+    <script>
+        // Variable Declaration
+        let rock = document.getElementById('rock');
+        let paper = document.getElementById('paper');
+        let scissor = document.getElementById('scissor');
+        let writeUser = document.getElementById('user');
+        let wrtieComputer = document.getElementById('computer');
+        let winner = document.getElementById('whoWins');
+        let gameState = true;
+        let playAgain = document.getElementById('playAgain');
+        let quit = document.getElementById('quit');
+        let userChoice;
+        let computerChoice;
+        let choice;
+        var winAmount = 0
+        var loseAmount = 0
+        var gamesPlayed = 0
+
+        // User Choice
+        rock.onclick = function() {
+            if(gameState) {
+                writeUser.textContent = "You picked rock";
+                userChoice = 'rock';
+                computer();
+            }
+        };
+        paper.onclick = function() {
+            if(gameState) {
+                writeUser.textContent = "You picked paper";
+                userChoice = 'paper';
+                computer();
+            }
+        };
+
+        scissor.onclick = function() {
+            if(gameState) {
+                writeUser.textContent = "You picked scissor";
+                userChoice = 'scissor';
+                computer();
+            }
+        };
+
+        // Computer Choice
+        function computer() {
+            if(gameState) {
+                let numChoice = Math.floor(Math.random() * 3 ) + 1;
+                switch(numChoice) {
+                    case 1:
+                        computerChoice = 'rock'
+                        break;
+                    case 2:
+                        computerChoice = 'paper'
+                        break;
+                    case 3:
+                        computerChoice = 'scissor'
+                        break;
+                    };
+                wrtieComputer.textContent = `Computer picked ${computerChoice}`
+                determineWinner(userChoice, computerChoice)
+            };
+        };
+
+        // Game Logic
+        function determineWinner(userChoice, computerChoice) {
+            if(computerChoice == 'rock' & userChoice == 'paper') {
+                whoWins.textContent = 'You Win!';
+                winAmount++;
+            } else if(computerChoice == 'paper' & userChoice == 'scissors') {
+                whoWins.textContent = 'You Win!';
+                winAmount++;
+            } else if(computerChoice == 'scissor' & userChoice == 'rock') {
+                whoWins.textContent = 'You Win!';
+                winAmount++;
+            } else if(computerChoice == userChoice) {
+                whoWins.textContent = 'It is a tie!'
+            } else {
+                whoWins.textContent = 'The Computer Wins!'
+                loseAmount++;
+            }
+            gameState = !gameState;
+            gamesPlayed++;
+            playAgain.style.display = 'inline'
+            quit.style.display = 'inline'
+            playAgain.textContent = 'Play Again?'
+            quit.textContent = 'Quit'
+        };
+        
+        playAgain.onclick = function() {
+            whoWins.textContent = '';
+            writeUser.textContent = '';
+            wrtieComputer.textContent = '';
+            playAgain.style.display = 'none';
+            quit.style.display = 'none'
+            gameState = true
+        }
+        quit.onclick = function() {
+            let message = winAmount > loseAmount ? 'You are good at Rock Paper Scissors': 'You are bad at rock paper scissors'
+            document.getElementById('gameOver').textContent = 'Goodbye, ' + message
+            document.getElementById('stats').textContent = `Wins: ${winAmount} times, Lost: ${loseAmount} times... You played ${gamesPlayed} times`
+            whoWins.textContent = '';
+            writeUser.textContent = '';
+            wrtieComputer.textContent = '';
+            playAgain.style.display = 'none';
+            quit.style.display = 'none'
+        }
+
+    </script>
+</body>
+</html>

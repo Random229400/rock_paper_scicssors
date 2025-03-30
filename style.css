@@ -1,0 +1,72 @@
+#title {
+    text-align: center;
+}
+
+.buttons {
+    text-align: center;
+    cursor: pointer;
+}
+
+#rock {
+    transition: background-color .5s;
+    border-radius: 20px;
+}
+
+#rock:hover {
+    background-color: blue;
+}
+
+#paper {
+    transition: background-color .5s;
+    border-radius: 20px;
+}
+
+#paper:hover {
+    background-color: rgb(83, 249, 83);
+}
+
+#scissor {
+    transition: background-color .5s;
+    border-radius: 20px;
+}
+
+#scissor:hover {
+    background-color: red;
+}
+
+#computer {
+    text-align: center;
+    transition: ease-in-out 1s;
+}
+
+#user {
+    text-align: center;
+}
+
+#whoWins {
+    text-align: center;
+}
+
+button {
+    text-align: center;
+}
+
+#playAgain {
+    display: none;
+    background-color: rgb(7, 174, 7);
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+#quit {
+    display: none;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+p {
+    text-align: center;
+}
